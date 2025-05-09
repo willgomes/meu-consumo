@@ -1,4 +1,7 @@
 using Blazored.LocalStorage;
+
+using Extensions;
+
 using Infrastructure;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -16,6 +19,8 @@ builder.Services.AddScoped<ProductService>();
 
 builder.Services.AddMudServices();
 builder.Services.AddBlazoredLocalStorageAsSingleton();
+	
+builder.Services.AddLocalization();
 
 var host = builder.Build();
 
@@ -24,5 +29,7 @@ await using var indexedDb = scope.ServiceProvider.GetService<IndexedDbAccessor>(
 
 if (indexedDb is not null)
     await indexedDb.InitializeAsync();
+
+await host.SetDefaultCultureAsync();
 
 await host.RunAsync();

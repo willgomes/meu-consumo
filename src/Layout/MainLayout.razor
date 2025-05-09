@@ -1,5 +1,8 @@
 ﻿@using Blazored.LocalStorage
+@using Microsoft.Extensions.Localization
+@using Resources
 @using global::Layout
+@using track_items.Components
 @inherits LayoutComponentBase
 
 <MudThemeProvider @ref="_mudThemeProvider" @bind-IsDarkMode="_isDarkMode" Theme="_theme" />
@@ -10,10 +13,11 @@
             OnClick="@((e) => DrawerToggle())" />
         <MudSpacer />
         <MudIconButton Icon="@_modeIcon" Color="Color.Inherit" Edge="Edge.End" OnClick="ToggleDarkModeAsync" />
+        <LanguageSelector />
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Elevation="2">
         <MudDrawerHeader>
-            <MudText Typo="Typo.h5" Class="mt-1">Meu Consumo</MudText>
+            <MudText Typo="Typo.h5" Class="mt-1">@Localizer["AppTitle"]</MudText>
         </MudDrawerHeader>
         <NavMenu />
     </MudDrawer>
@@ -23,7 +27,8 @@
         </div>
         <MudAppBar Bottom="true" Elevation="1" Style="height: 64px;">
             <MudText Class="mx-auto" Typo="Typo.body2">
-                @DateTime.Now.Year - Desenvolvido por <MudLink Color="Color.Default" Href="https://www.willgomes.com.br" Target="_blank" Underline="Underline.None">Wilson Neto</MudLink>
+                @DateTime.Now.Year - @Localizer["Developedby"] <MudLink Color="Color.Default"
+                    Href="https://www.willgomes.com.br" Target="_blank" Underline="Underline.None">Wilson Neto</MudLink>
             </MudText>
         </MudAppBar>
     </MudMainContent>
@@ -32,6 +37,7 @@
 @code {
 
     [Inject] ILocalStorageService _localStorage { get; set; }
+    [Inject] IStringLocalizer<Resource> Localizer { get; set; }
     MudTheme _theme = CustomThemes.GetThemes();
     private MudThemeProvider _mudThemeProvider;
     private string _modeIcon => _isDarkMode ? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode;
@@ -44,9 +50,9 @@
         {
             string? hasResult = await _localStorage.GetItemAsStringAsync("darkMode");
 
-            if(string.IsNullOrEmpty(hasResult))
+            if (string.IsNullOrEmpty(hasResult))
                 _isDarkMode = await _mudThemeProvider.GetSystemPreference();
-             
+
             bool.TryParse(hasResult, out bool hasDarkModePreference);
 
             _isDarkMode = hasDarkModePreference;
@@ -58,7 +64,7 @@
     async Task ToggleDarkModeAsync()
     {
         _isDarkMode = !_isDarkMode;
-        
+
         await _localStorage.SetItemAsync("darkMode", _isDarkMode);
     }
 

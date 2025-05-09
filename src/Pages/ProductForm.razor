@@ -1,8 +1,9 @@
 @page "/product-form"
+@using Microsoft.Extensions.Localization
 
 <MudGrid Class="px-4 py-4">
     <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-        <MudText Typo="Typo.h6" Class="px-4">Adicionar produto</MudText>
+        <MudText Typo="Typo.h6" Class="px-4">@Localizer["AddProduct"]</MudText>
     </MudItem>
     <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
         <MudCard>
@@ -10,18 +11,18 @@
                 <MudCardContent>
                     <MudGrid>
                         <MudItem xs="12" sm="12">
-                            <MudTextField @bind-Value="_product.Name" Label="Nome" Required="true"
-                                RequiredError="Nome é obrigatório" />
+                            <MudTextField @bind-Value="_product.Name" Label="@Localizer["Name"]" Required="true"
+                                RequiredError="@Localizer["NameRequired"]" />
                         </MudItem>
                         <MudItem xs="12" sm="12">
                             <MudNumericField Adornment="Adornment.Start" AdornmentText="R$" @bind-Value="_product.Price"
-                                Label="Preço" Format="N2" />
+                                Label="@Localizer["Price"]" Format="N2" />
                         </MudItem>
                         <MudItem xs="12" sm="12">
-                            <MudNumericField @bind-Value="_product.Stock" Label="Quantidade" Min="0" />
+                            <MudNumericField @bind-Value="_product.Stock" Label="@Localizer["Quantity"]" Min="0" />
                         </MudItem>
                         <MudItem xs="12" sm="12">
-                            <MudTextField @bind-Value="_product.ImageUrl" Label="URL da Imagem" />
+                            <MudTextField @bind-Value="_product.ImageUrl" Label="@Localizer["ImageUrl"]" />
                         </MudItem>
                     </MudGrid>
                 </MudCardContent>

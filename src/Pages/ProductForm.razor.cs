@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
+
 using Models;
 using MudBlazor;
+
+using Resources;
+
 using Services;
 
 namespace track_items.Pages
@@ -18,6 +23,8 @@ namespace track_items.Pages
         [Inject]
         private ProductService? _productService { get; set; }
 
+        [Inject] IStringLocalizer<Resource> Localizer { get; set;}
+
         private async Task SubmitAsync()
         {
             await _form!.Validate();
@@ -26,7 +33,7 @@ namespace track_items.Pages
 
             if (_form.IsValid)
             {
-                _snackbar!.Add("Product added successfully", Severity.Success, config =>
+                _snackbar!.Add(Localizer["ProductAddedSuccessfully"], Severity.Success, config =>
                 {
                     config.ShowCloseIcon = true;
                     config.CloseAfterNavigation = true;

@@ -1,20 +1,21 @@
 @page "/about"
+@using Microsoft.Extensions.Localization
+@using Resources
+
+@inject IStringLocalizer<Resource> Localizer
 
 <MudGrid Class="px-4 py-4">
     <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
         <MudCard>
             <MudCardHeader>
-                <MudText Typo="Typo.h6">Privacidade e Propósito</MudText>
+                <MudText Typo="Typo.h6">@Localizer["PrivacyAndPurpose"]</MudText>
             </MudCardHeader>
             <MudCardContent>
                 <MudText Typo="Typo.body1" Class="mb-4">
-                    Esse página foi criada para resolver um problema pessoal, mas pode ser utilizada por qualquer pessoa, 
-                    caso faça sentido. Seu objetivo é permitir uma gestão simples de itens comprados, 
-                    como o tempo e o valor.
+                    @Localizer["AboutDescription"]
                 </MudText>
                 <MudText Typo="Typo.body1" Class="mb-4">
-                    Além disso, todos os dados inseridos não são enviados para nenhum servidor e não há qualquer sincronização 
-                    externa. As informações permanecem localmente no seu dispositivo, garantindo total privacidade e segurança.
+                    @Localizer["PrivacyNotice"]
                 </MudText>
             </MudCardContent>
         </MudCard>
@@ -23,21 +24,17 @@
     <MudItem xs="12" sm="12" md="12" lg="12" xl="12" Class="mt-4">
         <MudCard>
             <MudCardHeader>
-                <MudText Typo="Typo.h6">Use esta página como um aplicativo</MudText>
+                <MudText Typo="Typo.h6">@Localizer["UseAsApp"]</MudText>
             </MudCardHeader>
             <MudCardContent>
                 <MudText Typo="Typo.body1" Class="mb-4">
-                    Você pode "instalar" esta página como um PWA (Aplicativo Progressivo para Web) e acessá-la diretamente 
-                    da tela inicial ou do menu de aplicativos do seu dispositivo.
+                    @Localizer["PwaDescription"]
                 </MudText>
                 <MudText Typo="Typo.body1" Class="mb-4">
-                    Isso não é uma instalação tradicional, como baixar um programa, mas sim uma forma de tornar o acesso 
-                    mais rápido e conveniente. Além disso, depois de "instalado", você pode usá-lo offline, sem precisar 
-                    de conexão com a internet para acessar os conteúdos já carregados.
+                    @Localizer["InstallationInfo"]
                 </MudText>
                 <MudText Typo="Typo.body1">
-                    Para adicionar à sua tela inicial, procure a opção "Adicionar à tela inicial" ou "Instalar aplicativo" 
-                    no navegador.
+                    @Localizer["InstallInstructions"]
                 </MudText>
             </MudCardContent>
         </MudCard>

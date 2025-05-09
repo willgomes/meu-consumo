@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="NoProductsFound" xml:space="preserve">
+    <value>No products found</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="CreatedAt" xml:space="preserve">
+    <value>Created at</value>
+  </data>
+  <data name="UpdatedAt" xml:space="preserve">
+    <value>Updated at</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TotalDuration" xml:space="preserve">
+    <value>Total Duration</value>
+  </data>
+  <data name="Developedby" xml:space="preserve">
+    <value>Developed by</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>A place for you to record and track your product consumption. You can add, edit and delete products, as well as view consumption history.</value>
+  </data>
+  <data name="AddProduct" xml:space="preserve">
+    <value>Add product</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>Name is required</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>Image URL</value>
+  </data>
+  <data name="PrivacyAndPurpose" xml:space="preserve">
+    <value>Privacy and Purpose</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>This page was created to solve a personal problem, but can be used by anyone if it makes sense. Its purpose is to allow simple management of purchased items, such as time and value.</value>
+  </data>
+  <data name="PrivacyNotice" xml:space="preserve">
+    <value>Additionally, all entered data is not sent to any server and there is no external synchronization. The information remains locally on your device, ensuring total privacy and security.</value>
+  </data>
+  <data name="UseAsApp" xml:space="preserve">
+    <value>Use this page as an app</value>
+  </data>
+  <data name="PwaDescription" xml:space="preserve">
+    <value>You can "install" this page as a PWA (Progressive Web App) and access it directly from your device's home screen or app menu.</value>
+  </data>
+  <data name="InstallationInfo" xml:space="preserve">
+    <value>This is not a traditional installation, like downloading a program, but rather a way to make access faster and more convenient. Also, once "installed", you can use it offline, without needing an internet connection to access already loaded content.</value>
+  </data>
+  <data name="InstallInstructions" xml:space="preserve">
+    <value>To add to your home screen, look for the "Add to home screen" or "Install app" option in your browser.</value>
+  </data>
+  <data name="ProductAddedSuccessfully" xml:space="preserve">
+    <value>Product added successfully</value>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>My Consumption</value>
+  </data>
+</root>

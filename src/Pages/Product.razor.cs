@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
+
 using Models;
 using MudBlazor;
+
+using Resources;
+
 using Services;
 
 namespace track_items.Pages
@@ -9,6 +14,7 @@ namespace track_items.Pages
     {
         [Inject] ProductService? ProductService { get; set; }
         [Inject] ISnackbar? Snackbar { get; set; }
+        [Inject] IStringLocalizer<Resource> Localizer { get; set; }
 
         private IEnumerable<ProductModel>? _products = [];
 
