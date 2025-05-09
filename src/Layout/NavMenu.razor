@@ -1,0 +1,16 @@
+﻿<MudPaper Class="py-3 d-flex flex-column" Style="height: 100vh;" Elevation="0">
+    <MudNavMenu Color="Color.Secondary" Class="flex-grow-1">
+        <MudImage Fluid="true" Src="./images/meu-consumo.png" Alt="Imagem contendo um boneco segurando uma lupa e uma prancheta com vários de supermercado ao redor" Class="rounded-lg"/>
+        <MudText Typo="Typo.body2" Class="px-4 mud-text-primary">
+            Um lugar para você registrar e acompanhar o seu consumo de produtos. Você pode adicionar, editar e excluir produtos, além de visualizar o histórico de consumo.
+        </MudText>
+        <MudDivider Class="my-2"/>
+        <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+        <MudNavLink Href="/product" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.ShoppingBasket">Produtos</MudNavLink>
+    </MudNavMenu>
+
+    <MudDivider />
+    <MudNavMenu Color="Color.Secondary" Class="mt-auto">
+        <MudNavLink Href="/about" Icon="@Icons.Material.Filled.Info">Sobre</MudNavLink>
+    </MudNavMenu>
+</MudPaper>

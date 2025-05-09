@@ -1,0 +1,52 @@
+@page "/product"
+
+<MudGrid Class="px-4 py-4">
+    <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+        <MudText Typo="Typo.h6" Class="px-4">Produtos</MudText>
+    </MudItem>
+    <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+        @if (_products!.Count() == 0)
+        {
+            <MudText Typo="Typo.body1" Class="px-4">Nenhum produto encontrado.</MudText>
+        }
+        else
+        {
+            @foreach (var product in _products)
+            {
+                <MudCard Class="mb-4" Style="width: 100%;">
+                    <MudCardHeader>
+                        <CardHeaderAvatar>
+                            <MudAvatar>
+                                <MudImage Src="@product.ImageUrl" Alt="@product.Name"></MudImage>
+                            </MudAvatar>
+                        </CardHeaderAvatar>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.body1">@product.Name</MudText>
+                            <MudText Typo="Typo.body2">R$ @product.Price</MudText>
+                        </CardHeaderContent>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudText Typo="Typo.body1">Quantidade: @product.Stock</MudText>
+                        <MudText Typo="Typo.body1">Criado em: @product.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss")</MudText>
+                        <MudText Typo="Typo.body2">Total: R$ @product.GetTotalPrice().ToString("N2")</MudText>
+                        
+                        @if(product.UpdatedAt is not null)
+                        {
+                            <MudText Typo="Typo.body2">Atualizado em: @product.UpdatedAt?.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss")</MudText>
+                            <MudText Typo="Typo.body2">Duração total: @product.GetTotalDiffTime()</MudText>
+                        }
+                        
+                    </MudCardContent>
+                    <MudCardActions Style="justify-content: center;">
+                        <MudIconButton OnClick="@(() => DeleteProductAsync(product.Id))" Icon="@Icons.Material.Filled.Delete" Variant="Variant.Filled" Color="Color.Error" Class="mx-2" />
+                        <MudIconButton Icon="@Icons.Material.Filled.Edit" Variant="Variant.Filled" Color="Color.Primary" Class="mx-2" />
+                        <MudIconButton Disabled="@(product.UpdatedAt is not null)" OnClick="@(() => CheckProductAsync(product))" Icon="@Icons.Material.Filled.Check" Variant="Variant.Filled" Color="Color.Success" Class="mx-2" />
+                    </MudCardActions>
+                </MudCard>
+            }
+        }
+    </MudItem>
+</MudGrid>
+
+<MudFab StartIcon="@Icons.Material.Filled.ShoppingBasket" Color="Color.Primary" Style="position: fixed; right: 2rem; bottom: 6rem;"
+    Href="/product-form" />

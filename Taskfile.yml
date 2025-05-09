@@ -1,0 +1,22 @@
+version: "3"
+
+vars:
+  PROJECT_PATH: "./src/track-items.csproj"
+  
+tasks:
+  build:
+    desc: Clean and Build project
+    cmds:
+      - dotnet restore {{.PROJECT_PATH}}
+      - dotnet clean {{.PROJECT_PATH}}
+      - dotnet build {{.PROJECT_PATH}}
+
+  run:
+    desc: Run project
+    cmds:
+      - dotnet run -c Debug --project {{.PROJECT_PATH}}
+
+  watch:
+    desc: Watch Run project
+    cmds:
+      - dotnet watch run -c Debug --project {{.PROJECT_PATH}}
