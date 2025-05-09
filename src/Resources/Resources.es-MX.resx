@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Home" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Productos</value>
+  </data>
+  <data name="NoProductsFound" xml:space="preserve">
+    <value>No se encontraron productos</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="CreatedAt" xml:space="preserve">
+    <value>Creado en</value>
+  </data>
+  <data name="UpdatedAt" xml:space="preserve">
+    <value>Actualizado en</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TotalDuration" xml:space="preserve">
+    <value>Duración Total</value>
+  </data>
+  <data name="Developedby" xml:space="preserve">
+    <value>Desarrollado por</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Un lugar para registrar y seguir tu consumo de productos. Puedes agregar, editar y eliminar productos, además de ver el historial de consumo.</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
+  <data name="AddProduct" xml:space="preserve">
+    <value>Agregar producto</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>El nombre es obligatorio</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Precio</value>
+  </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>URL de la imagen</value>
+  </data>
+  <data name="PrivacyAndPurpose" xml:space="preserve">
+    <value>Privacidad y Propósito</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>Esta página fue creada para resolver un problema personal, pero puede ser utilizada por cualquier persona si tiene sentido. Su objetivo es permitir una gestión simple de los artículos comprados, como el tiempo y el valor.</value>
+  </data>
+  <data name="PrivacyNotice" xml:space="preserve">
+    <value>Además, todos los datos ingresados no se envían a ningún servidor y no hay sincronización externa. La información permanece localmente en tu dispositivo, garantizando total privacidad y seguridad.</value>
+  </data>
+  <data name="UseAsApp" xml:space="preserve">
+    <value>Usa esta página como una aplicación</value>
+  </data>
+  <data name="PwaDescription" xml:space="preserve">
+    <value>Puedes "instalar" esta página como una PWA (Aplicación Web Progresiva) y acceder a ella directamente desde la pantalla de inicio o el menú de aplicaciones de tu dispositivo.</value>
+  </data>
+  <data name="InstallationInfo" xml:space="preserve">
+    <value>Esto no es una instalación tradicional, como descargar un programa, sino una forma de hacer el acceso más rápido y conveniente. Además, después de "instalada", puedes usarla sin conexión, sin necesitar internet para acceder a los contenidos ya cargados.</value>
+  </data>
+  <data name="InstallInstructions" xml:space="preserve">
+    <value>Para agregar a tu pantalla de inicio, busca la opción "Agregar a la pantalla de inicio" o "Instalar aplicación" en el navegador.</value>
+  </data>
+  <data name="ProductAddedSuccessfully" xml:space="preserve">
+    <value>Producto agregado exitosamente</value>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Mi Consumo</value>
+  </data>
+</root>
