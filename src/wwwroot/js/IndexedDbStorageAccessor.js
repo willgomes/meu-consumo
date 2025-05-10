@@ -69,31 +69,6 @@ export async function getAll(collectionName) {
     });
 }
 
-export async function query(collectionName, filterFn) {
-    return new Promise((resolve) => {
-        let results = [];
-        let ticketSystemDb = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
-        
-        ticketSystemDb.onsuccess = function() {
-            let transaction = ticketSystemDb.result.transaction(collectionName, "readonly");
-            let objectStore = transaction.objectStore(collectionName);
-            
-            objectStore.openCursor().onsuccess = function(event) {
-                let cursor = event.target.result;
-                
-                if (cursor) {
-                    if (!filterFn || filterFn(cursor.value)) {
-                        results.push(cursor.value);
-                    }
-                    cursor.continue();
-                } else {
-                    resolve(results);
-                }
-            };
-        }
-    });
-}
-
 export async function del(collectionName, id) {
     return new Promise((resolve, reject) => {
         let ticketSystemDb = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
@@ -120,4 +95,3 @@ export async function del(collectionName, id) {
 
 let CURRENT_VERSION = 1;
 let DATABASE_NAME = "TrackItemSystemDB";
-let TRACK_STORE_NAME = "TrackItemsStore";
