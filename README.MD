@@ -6,6 +6,8 @@
 
 A Progressive Web App (PWA) built with Blazor to help users track their product consumption.
 
+🌐 **[Live Demo](https://www.meu-consumo.willgomes.com.br/)**
+
 ## 🚀 Features
 
 - Add, edit and delete products
@@ -56,6 +58,8 @@ All data is stored locally on your device using IndexedDB. No external servers a
 # Português
 
 Uma Progressive Web App (PWA) construída com Blazor para ajudar usuários a acompanhar seu consumo de produtos.
+
+🌐 **[Demo](https://www.meu-consumo.willgomes.com.br/)**
 
 ## 🚀 Funcionalidades
 
