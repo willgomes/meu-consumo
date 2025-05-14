@@ -1,4 +1,5 @@
 @page "/product-form"
+@page "/product-form/{productId:guid}"
 @using Microsoft.Extensions.Localization
 
 <MudGrid Class="px-4 py-4">
@@ -22,7 +23,10 @@
                             <MudNumericField @bind-Value="_product.Stock" Label="@Localizer["Quantity"]" Min="0" />
                         </MudItem>
                         <MudItem xs="12" sm="12">
-                            <MudTextField @bind-Value="_product.ImageUrl" Label="@Localizer["ImageUrl"]" />
+                            <MudDatePicker Label="@Localizer["AddedAt"]" Editable="true" @bind-Date="_product.CreatedAt" Placeholder="@Localizer["SelectDate"]" />
+                        </MudItem>
+                        <MudItem xs="12" sm="12">
+                            <MudDatePicker Label="@Localizer["ExpiresIn"]" Editable="true" @bind-Date="_product.ExpirationDate" Placeholder="@Localizer["SelectDate"]" />
                         </MudItem>
                     </MudGrid>
                 </MudCardContent>

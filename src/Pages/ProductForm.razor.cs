@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 
 using Models;
+
 using MudBlazor;
 
 using Resources;
@@ -14,6 +15,9 @@ namespace track_items.Pages
     {
         private ProductModel _product = new();
 
+        [Parameter]
+        public Guid productId { get; set; }
+
         private MudForm? _form;
         private bool _isLoading = false;
 
@@ -23,7 +27,15 @@ namespace track_items.Pages
         [Inject]
         private ProductService? _productService { get; set; }
 
-        [Inject] IStringLocalizer<Resource> Localizer { get; set;}
+        [Inject] IStringLocalizer<Resource> Localizer { get; set; }
+
+        [Inject] NavigationManager NavigationManager { get; set; }
+
+        protected override async Task OnInitializedAsync()
+        {
+            if (IsEditMode)
+                _product = await _productService!.GetProductAsync(productId);
+        }
 
         private async Task SubmitAsync()
         {
@@ -41,13 +53,22 @@ namespace track_items.Pages
 
                 await _productService!.AddProductAsync(_product);
 
-                Cancel();
+                if (!IsEditMode)
+                    Cancel();
             }
 
             _isLoading = false;
             StateHasChanged();
         }
 
-        private void Cancel() => _product = new ProductModel();
+        private bool IsEditMode => productId != Guid.Empty;
+
+        private void Cancel()
+        {
+            if (IsEditMode)
+                NavigationManager.NavigateTo("/product");
+            else
+                _product = new ProductModel();
+        }
     }
 }
