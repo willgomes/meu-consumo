@@ -75,4 +75,16 @@
   <data name="AppTitle" xml:space="preserve">
     <value>Mi Consumo</value>
   </data>
+  <data name="AddedAt" xml:space="preserve">
+    <value>Agregado el</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>Seleccionar Fecha</value>
+  </data>
+  <data name="ExpiresIn" xml:space="preserve">
+    <value>Expira en</value>
+  </data>
+  <data name="DaysLeft" xml:space="preserve">
+    <value>Días Restantes</value>
+  </data>
 </root>
