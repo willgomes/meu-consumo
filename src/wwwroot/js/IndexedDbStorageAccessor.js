@@ -8,7 +8,9 @@ export function initialize()
 
         const productsStore = db.createObjectStore("products", { keyPath: "id" });
 
-        productsStore.createIndex("name", "name", { unique: false });
+        productsStore.createIndex("idxname", "name", { unique: false });
+        productsStore.createIndex("idxcreatedAt", "createdAt", { unique: false });
+        productsStore.createIndex("idxupdatedAt", "updatedAt", { unique: false });
         
     }
 }
@@ -25,25 +27,37 @@ export function set(collectionName, value)
     }
 }
 
-export async function get(collectionName, id)
-{
-    let request = new Promise((resolver) => {
-        let ticketSystemDb = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
+export async function get(collectionName, id) {
+    return new Promise((resolve, reject) => {
+        const ticketSystemDb = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
         
-        ticketSystemDb.onsuccess = function ()
-        {
-            let transaction = ticketSystemDb.result.transaction(collectionName, "readonly");
-            let collection = transaction.objectStore(collectionName);
-            let result = collection.get(id);
+        ticketSystemDb.onerror = function(event) {
+            reject(event.target.error);
+        };
+        
+        ticketSystemDb.onsuccess = function() {
+            try {
+                const db = ticketSystemDb.result;
+                const transaction = db.transaction(collectionName, "readonly");
+                const objectStore = transaction.objectStore(collectionName);
+                const request = objectStore.get(id);
 
-            result.onsuccess = function (event) {
-                resolver(event.result);
+                request.onsuccess = function(event) {
+                    resolve(event.target.result);
+                };
+
+                request.onerror = function(event) {
+                    reject(event.target.error);
+                };
+
+                transaction.oncomplete = function() {
+                    db.close();
+                };
+            } catch (error) {
+                reject(error);
             }
-        }
+        };
     });
-
-    let result = await request;
-    return result;
 }
 
 export async function getAll(collectionName) {
