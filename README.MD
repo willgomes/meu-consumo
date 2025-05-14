@@ -16,6 +16,8 @@ A Progressive Web App (PWA) built with Blazor to help users track their product 
 - Installable as PWA
 - Dark/Light theme support
 - Local storage for data privacy
+- Multi-language support (English, Portuguese, Spanish)
+- Product expiration tracking
 
 ## 💻 Technologies
 
@@ -23,6 +25,8 @@ A Progressive Web App (PWA) built with Blazor to help users track their product 
 - MudBlazor UI Framework
 - IndexedDB for local storage
 - PWA capabilities
+- Browser Notifications API
+- Localization support
 
 ## 🌟 Getting Started
 
@@ -69,6 +73,8 @@ Uma Progressive Web App (PWA) construída com Blazor para ajudar usuários a aco
 - Instalável como PWA
 - Suporte a tema claro/escuro
 - Armazenamento local para privacidade dos dados
+- Suporte multi-idiomas (Inglês, Português, Espanhol)
+- Rastreamento de validade dos produtos
 
 ## 💻 Tecnologias
 
@@ -76,6 +82,8 @@ Uma Progressive Web App (PWA) construída com Blazor para ajudar usuários a aco
 - Framework MudBlazor UI
 - IndexedDB para armazenamento local
 - Recursos PWA
+- API de Notificações do Navegador
+- Suporte a localização
 
 ## 🌟 Começando
 
