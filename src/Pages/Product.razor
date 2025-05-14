@@ -17,18 +17,31 @@
                     <MudCardHeader>
                         <CardHeaderAvatar>
                             <MudAvatar>
-                                <MudImage Src="@product.ImageUrl" Alt="@product.Name"></MudImage>
+                                <MudIcon Icon="@Icons.Material.Filled.ProductionQuantityLimits" />
                             </MudAvatar>
                         </CardHeaderAvatar>
                         <CardHeaderContent>
-                            <MudText Typo="Typo.body1">@product.Name</MudText>
+                            <MudText Typo="Typo.body1">@product.HumanizedName</MudText>
                             <MudText Typo="Typo.body2">R$ @product.Price</MudText>
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
                         <MudText Typo="Typo.body1">@Localizer["Quantity"]: @product.Stock</MudText>
-                        <MudText Typo="Typo.body1">@Localizer["CreatedAt"]: @product.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss")</MudText>
+                        <MudText Typo="Typo.body1">@Localizer["CreatedAt"]: @product.CreatedAt?.ToString("dd/MM/yyyy")</MudText>
                         <MudText Typo="Typo.body2">@Localizer["Total"]: R$ @product.GetTotalPrice().ToString("N2")</MudText>
+                        
+                        <MudDivider />
+
+                        @if(product.ExpirationDate is not null || product.UpdatedAt is not null)
+                        {
+                            <MudIcon Icon="@Icons.Material.Filled.ChecklistRtl" Color="Color.Primary" />
+                        }
+
+                        @if (product.ExpirationDate is not null)
+                        {
+                            <MudText Typo="Typo.body2">@Localizer["ExpiresIn"]: @product.ExpirationDate?.ToString("dd/MM/yyyy")</MudText>
+                            <MudText Typo="Typo.body2">@Localizer["DaysLeft"]: @product.GetDaysLeft()</MudText>
+                        }
                         
                         @if(product.UpdatedAt is not null)
                         {
@@ -38,6 +51,7 @@
                     </MudCardContent>
                     <MudCardActions Style="justify-content: center;">
                         <MudIconButton OnClick="@(() => DeleteProductAsync(product.Id))" Icon="@Icons.Material.Filled.Delete" Variant="Variant.Filled" Color="Color.Error" Class="mx-2" />
+                        <MudIconButton OnClick="@(() => EditProduct(product.Id))" Icon="@Icons.Material.Filled.Edit" Variant="Variant.Filled" Color="Color.Primary" Class="mx-2" />
                         <MudIconButton Disabled="@(product.UpdatedAt is not null)" OnClick="@(() => CheckProductAsync(product))" Icon="@Icons.Material.Filled.Check" Variant="Variant.Filled" Color="Color.Success" Class="mx-2" />
                     </MudCardActions>
                 </MudCard>
