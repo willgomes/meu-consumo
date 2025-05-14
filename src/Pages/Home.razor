@@ -5,11 +5,20 @@
 @using Resources
 
 <MudGrid Class="px-4 py-4">
-    <MudItem xs="11" sm="11" md="11" lg="11" xl="11">
-        <MudText Typo="Typo.h6" Class="px-4">@Localizer["EnableNotifications"]</MudText> <br />
-    </MudItem>
-    <MudItem xs="1" sm="1" md="1" lg="1" xl="1">
-        <MudSwitch ThumbIcon="@NotificationIcon" T="bool" @bind-Value="IsNotificationEnabled" Color="Color.Primary" />
+    <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+        <MudCard>
+            <MudCardContent>
+                <MudGrid>
+                    <MudItem xs="10" sm="10" md="10" lg="10" xl="10">
+                        <MudText Typo="Typo.h6" Class="px-4">@Localizer["EnableNotifications"]</MudText>
+                    </MudItem>
+                    <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                        <MudSwitch ThumbIcon="@NotificationIcon" T="bool" @bind-Value="IsNotificationEnabled"
+                            Color="Color.Primary" />
+                    </MudItem>
+                </MudGrid>
+            </MudCardContent>
+        </MudCard>
     </MudItem>
 </MudGrid>
 

@@ -23,10 +23,13 @@
                             <MudNumericField @bind-Value="_product.Stock" Label="@Localizer["Quantity"]" Min="0" />
                         </MudItem>
                         <MudItem xs="12" sm="12">
-                            <MudDatePicker Label="@Localizer["AddedAt"]" Editable="true" @bind-Date="_product.CreatedAt" Placeholder="@Localizer["SelectDate"]" />
+                            <MudDatePicker TransformOrigin="Origin.TopRight" Label="@Localizer["AddedAt"]" Editable="true" @bind-Date="_product.CreatedAt"
+                                Placeholder="@Localizer["SelectDate"]" />
                         </MudItem>
                         <MudItem xs="12" sm="12">
-                            <MudDatePicker Label="@Localizer["ExpiresIn"]" Editable="true" @bind-Date="_product.ExpirationDate" Placeholder="@Localizer["SelectDate"]" />
+                            <MudDatePicker TransformOrigin="Origin.TopRight" Label="@Localizer["ExpiresIn"]"
+                                Editable="true" @bind-Date="_product.ExpirationDate"
+                                Placeholder="@Localizer["SelectDate"]" />
                         </MudItem>
                     </MudGrid>
                 </MudCardContent>

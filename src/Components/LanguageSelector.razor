@@ -7,7 +7,7 @@
 @using Blazored.LocalStorage
 @inject ILocalStorageService LocalStorage
 
-<MudSelect T="string" Value="@CultureInfo.CurrentCulture.Name" ValueChanged="@ChangeLanguage" Dense="true" Class="ml-4">
+<MudSelect T="string" Value="@CultureInfo.CurrentCulture.Name" ValueChanged="@ChangeLanguage" Dense="true" Class="ml-4 mr-6">
     @foreach (var culture in LocalizerSettings.SupportedCulturesWithName)
     {
         <MudSelectItem Value="@culture.Item2">@culture.Item1</MudSelectItem>
