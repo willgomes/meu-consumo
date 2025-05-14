@@ -15,4 +15,5 @@ public class ProductService(
 
     public Task DeleteProductAsync(Guid id) => indexedDbAccessor.DeleteAsync(COLLECTION_NAME, id);
 
+    public Task<ProductModel> GetProductAsync(Guid id) => indexedDbAccessor.GetValueAsync<ProductModel>(COLLECTION_NAME, id);
 }
