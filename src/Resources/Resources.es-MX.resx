@@ -87,4 +87,7 @@
   <data name="DaysLeft" xml:space="preserve">
     <value>Días Restantes</value>
   </data>
+  <data name="EnableNotifications" xml:space="preserve">
+    <value>¿Te gustaría habilitar las notificaciones?</value>
+  </data>
 </root>

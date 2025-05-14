@@ -1,7 +1,59 @@
 ﻿@page "/"
+@using Blazored.LocalStorage
+@using Infrastructure
+@using Microsoft.Extensions.Localization
+@using Resources
 
 <MudGrid Class="px-4 py-4">
-    <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-        <MudText Typo="Typo.h6" Class="px-4">Haha</MudText>
+    <MudItem xs="11" sm="11" md="11" lg="11" xl="11">
+        <MudText Typo="Typo.h6" Class="px-4">@Localizer["EnableNotifications"]</MudText> <br />
+    </MudItem>
+    <MudItem xs="1" sm="1" md="1" lg="1" xl="1">
+        <MudSwitch ThumbIcon="@NotificationIcon" T="bool" @bind-Value="IsNotificationEnabled" Color="Color.Primary" />
     </MudItem>
 </MudGrid>
+
+@code
+{
+    [Inject] ILocalStorageService _localStorage { get; set; }
+    [Inject] Notifications Notifications { get; set; }
+    [Inject] IStringLocalizer<Resource> Localizer { get; set; }
+
+    private string NotificationIcon => IsNotificationEnabled ? Icons.Material.Filled.NotificationsActive :
+    Icons.Material.Filled.NotificationsOff;
+
+    private bool _isNotificationEnabled;
+    public bool IsNotificationEnabled
+    {
+        get => _isNotificationEnabled;
+        set
+        {
+            if (_isNotificationEnabled != value)
+            {
+                _isNotificationEnabled = value;
+
+                EnableNotificationsAsync();
+            }
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        string? notificationRequest = await _localStorage.GetItemAsStringAsync("notificationRequest");
+
+        bool.TryParse(notificationRequest, out bool hasAuthorizedNotification);
+
+        Console.WriteLine($"Notification Request: {hasAuthorizedNotification}");
+
+        _isNotificationEnabled = hasAuthorizedNotification;
+
+    }
+
+    private async Task EnableNotificationsAsync()
+    {
+        bool result = await Notifications.RequestPermissionAsync();
+
+        await _localStorage.SetItemAsync("notificationRequest", result);
+    }
+
+}
