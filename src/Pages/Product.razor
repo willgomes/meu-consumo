@@ -5,7 +5,7 @@
         <MudText Typo="Typo.h6" Class="px-4">@Localizer["Products"]</MudText>
     </MudItem>
     <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-        @if (_products!.Count() == 0)
+        @if (_products?.Count() == 0 || _products is null)
         {
             <MudText Typo="Typo.body1" Class="px-4">@Localizer["NoProductsFound"]</MudText>
         }
@@ -21,7 +21,7 @@
                             </MudAvatar>
                         </CardHeaderAvatar>
                         <CardHeaderContent>
-                            <MudText Typo="Typo.body1">@product.HumanizedName</MudText>
+                            <MudText Typo="Typo.body1">@product.GetHumanizedName()</MudText>
                             <MudText Typo="Typo.body2">R$ @product.Price</MudText>
                         </CardHeaderContent>
                     </MudCardHeader>

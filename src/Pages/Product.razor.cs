@@ -18,7 +18,7 @@ namespace track_items.Pages
         [Inject] IStringLocalizer<Resource> Localizer { get; set; }
         [Inject] NavigationManager NavigationManager { get; set; }
 
-        private IEnumerable<ProductModel>? _products = [];
+        private IEnumerable<ProductModel> _products = [];
 
         protected override async Task OnInitializedAsync()
         {
