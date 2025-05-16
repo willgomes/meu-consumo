@@ -2,12 +2,12 @@
 
 <MudGrid Class="px-4 py-4">
     <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-        <MudText Typo="Typo.h6" Class="px-4">@Localizer["Products"]</MudText>
+        <MudText Typo="Typo.h6" Class="px-4">@Localizer!["Products"]</MudText>
     </MudItem>
     <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
         @if (_products?.Count() == 0 || _products is null)
         {
-            <MudText Typo="Typo.body1" Class="px-4">@Localizer["NoProductsFound"]</MudText>
+            <MudText Typo="Typo.body1" Class="px-4">@Localizer!["NoProductsFound"]</MudText>
         }
         else
         {
@@ -26,9 +26,9 @@
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
-                        <MudText Typo="Typo.body1">@Localizer["Quantity"]: @product.Stock</MudText>
-                        <MudText Typo="Typo.body1">@Localizer["CreatedAt"]: @product.CreatedAt?.ToString("dd/MM/yyyy")</MudText>
-                        <MudText Typo="Typo.body2">@Localizer["Total"]: R$ @product.GetTotalPrice().ToString("N2")</MudText>
+                        <MudText Typo="Typo.body1">@Localizer!["Quantity"]: @product.Stock</MudText>
+                        <MudText Typo="Typo.body1">@Localizer!["CreatedAt"]: @product.CreatedAt?.ToString("dd/MM/yyyy")</MudText>
+                        <MudText Typo="Typo.body2">@Localizer!["Total"]: R$ @product.GetTotalPrice().ToString("N2")</MudText>
                         
                         <MudDivider />
 
@@ -39,14 +39,14 @@
 
                         @if (product.ExpirationDate is not null)
                         {
-                            <MudText Typo="Typo.body2">@Localizer["ExpiresIn"]: @product.ExpirationDate?.ToString("dd/MM/yyyy")</MudText>
-                            <MudText Typo="Typo.body2">@Localizer["DaysLeft"]: @product.GetDaysLeft()</MudText>
+                            <MudText Typo="Typo.body2">@Localizer!["ExpiresIn"]: @product.ExpirationDate?.ToString("dd/MM/yyyy")</MudText>
+                            <MudText Typo="Typo.body2">@Localizer!["DaysLeft"]: @product.GetDaysLeft()</MudText>
                         }
                         
                         @if(product.UpdatedAt is not null)
                         {
-                            <MudText Typo="Typo.body2">@Localizer["UpdatedAt"]: @product.UpdatedAt?.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss")</MudText>
-                            <MudText Typo="Typo.body2">@Localizer["TotalDuration"]: @product.GetTotalDiffTime()</MudText>
+                            <MudText Typo="Typo.body2">@Localizer!["UpdatedAt"]: @product.UpdatedAt?.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss")</MudText>
+                            <MudText Typo="Typo.body2">@Localizer!["TotalDuration"]: @product.GetTotalDiffTime()</MudText>
                         }
                     </MudCardContent>
                     <MudCardActions Style="justify-content: center;">

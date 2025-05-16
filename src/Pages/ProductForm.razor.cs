@@ -16,25 +16,25 @@ namespace track_items.Pages
         private ProductModel _product = new();
 
         [Parameter]
-        public Guid productId { get; set; }
+        public Guid ProductId { get; set; }
 
         private MudForm? _form;
         private bool _isLoading = false;
 
         [Inject]
-        private ISnackbar? _snackbar { get; set; }
+        private ISnackbar? Snackbar { get; set; }
 
         [Inject]
-        private ProductService? _productService { get; set; }
+        private ProductService? ProductService { get; set; }
 
-        [Inject] IStringLocalizer<Resource> Localizer { get; set; }
+        [Inject] IStringLocalizer<Resource>? Localizer { get; set; }
 
-        [Inject] NavigationManager NavigationManager { get; set; }
+        [Inject] NavigationManager? NavigationManager { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             if (IsEditMode)
-                _product = await _productService!.GetProductAsync(productId);
+                _product = await ProductService!.GetProductAsync(ProductId);
         }
 
         private async Task SubmitAsync()
@@ -45,13 +45,13 @@ namespace track_items.Pages
 
             if (_form.IsValid)
             {
-                _snackbar!.Add(Localizer["ProductAddedSuccessfully"], Severity.Success, config =>
+                Snackbar!.Add(Localizer!["ProductAddedSuccessfully"], Severity.Success, config =>
                 {
                     config.ShowCloseIcon = true;
                     config.CloseAfterNavigation = true;
                 });
 
-                await _productService!.AddProductAsync(_product);
+                await ProductService!.AddProductAsync(_product);
 
                 if (!IsEditMode)
                     Cancel();
@@ -61,12 +61,12 @@ namespace track_items.Pages
             StateHasChanged();
         }
 
-        private bool IsEditMode => productId != Guid.Empty;
+        private bool IsEditMode => ProductId != Guid.Empty;
 
         private void Cancel()
         {
             if (IsEditMode)
-                NavigationManager.NavigateTo("/product");
+                NavigationManager!.NavigateTo("/product");
             else
                 _product = new ProductModel();
         }

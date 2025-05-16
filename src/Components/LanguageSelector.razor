@@ -5,7 +5,6 @@
 @using System.Globalization
 @using Shared
 @using Blazored.LocalStorage
-@inject ILocalStorageService LocalStorage
 
 <MudSelect T="string" Value="@CultureInfo.CurrentCulture.Name" ValueChanged="@ChangeLanguage" Dense="true" Class="ml-4 mr-6">
     @foreach (var culture in LocalizerSettings.SupportedCulturesWithName)
@@ -16,10 +15,11 @@
 
 @code {
 
-    [Inject]
-    private NavigationManager NavigationManager { get; set; } = default!;
+    [Inject] private NavigationManager? NavigationManager { get; set; }
+    [Inject] private ILocalStorageService? LocalStorage { get; set; }
 
-    private string CurrentCulture { get; set; }
+
+    private string? CurrentCulture { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -30,8 +30,8 @@
 
     private async Task ChangeLanguage(string newCulture)
     {
-        await LocalStorage.SetItemAsync(LocalizerSettings.CULTURE_KEY, newCulture);
+        await LocalStorage!.SetItemAsync(LocalizerSettings.CULTURE_KEY, newCulture);
 
-        NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
+        NavigationManager!.NavigateTo(NavigationManager.Uri, forceLoad: true);
     }
 }

@@ -15,8 +15,8 @@ namespace track_items.Pages
     {
         [Inject] ProductService? ProductService { get; set; }
         [Inject] ISnackbar? Snackbar { get; set; }
-        [Inject] IStringLocalizer<Resource> Localizer { get; set; }
-        [Inject] NavigationManager NavigationManager { get; set; }
+        [Inject] IStringLocalizer<Resource>? Localizer { get; set; }
+        [Inject] NavigationManager? NavigationManager { get; set; }
 
         private IEnumerable<ProductModel> _products = [];
 
@@ -35,7 +35,7 @@ namespace track_items.Pages
             await LoadProductsAsync();
         }
 
-        private void EditProduct(Guid id) => NavigationManager.NavigateTo($"/product-form/{id}");
+        private void EditProduct(Guid id) => NavigationManager!.NavigateTo($"/product-form/{id}");
 
         private async Task LoadProductsAsync() => _products = await ProductService!.GetProductsAsync();
 

@@ -10,7 +10,7 @@
             <MudCardContent>
                 <MudGrid>
                     <MudItem xs="10" sm="10" md="10" lg="10" xl="10">
-                        <MudText Typo="Typo.h6" Class="px-4">@Localizer["EnableNotifications"]</MudText>
+                        <MudText Typo="Typo.h6" Class="px-4">@Localizer!["EnableNotifications"]</MudText>
                     </MudItem>
                     <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
                         <MudSwitch ThumbIcon="@NotificationIcon" T="bool" @bind-Value="IsNotificationEnabled"
@@ -24,9 +24,9 @@
 
 @code
 {
-    [Inject] ILocalStorageService _localStorage { get; set; }
-    [Inject] Notifications Notifications { get; set; }
-    [Inject] IStringLocalizer<Resource> Localizer { get; set; }
+    [Inject] ILocalStorageService? LocalStorage { get; set; }
+    [Inject] Notifications? Notifications { get; set; }
+    [Inject] IStringLocalizer<Resource>? Localizer { get; set; }
 
     private string NotificationIcon => IsNotificationEnabled ? Icons.Material.Filled.NotificationsActive :
     Icons.Material.Filled.NotificationsOff;
@@ -41,14 +41,14 @@
             {
                 _isNotificationEnabled = value;
 
-                EnableNotificationsAsync();
+                _ = Task.Run(async () => await EnableNotificationsAsync());
             }
         }
     }
 
     protected override async Task OnInitializedAsync()
     {
-        string? notificationRequest = await _localStorage.GetItemAsStringAsync("notificationRequest");
+        string? notificationRequest = await LocalStorage!.GetItemAsStringAsync("notificationRequest");
 
         bool.TryParse(notificationRequest, out bool hasAuthorizedNotification);
 
@@ -60,9 +60,9 @@
 
     private async Task EnableNotificationsAsync()
     {
-        bool result = await Notifications.RequestPermissionAsync();
+        bool result = await Notifications!.RequestPermissionAsync();
 
-        await _localStorage.SetItemAsync("notificationRequest", result);
+        await LocalStorage!.SetItemAsync("notificationRequest", result);
     }
 
 }
