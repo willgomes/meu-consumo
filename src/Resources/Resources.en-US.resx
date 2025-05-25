@@ -96,4 +96,7 @@
   <data name="TotalExpirationItens" xml:space="preserve">
     <value>You have {0} products expiring soon</value>
   </data>
+  <data name="ProductDeleted" xml:space="preserve">
+    <value>Product deleted</value>
+  </data>
 </root>
