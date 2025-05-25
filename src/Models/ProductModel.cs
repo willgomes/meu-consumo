@@ -12,6 +12,7 @@ public class ProductModel
     public DateTime? CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
     public DateTime? ExpirationDate { get; set; }
+    public bool IsChecked { get; set; }
     public string? Type { get; set; }
 
     public decimal GetTotalPrice() => Price.HasValue ? Price.Value * Stock : 0m;

@@ -52,7 +52,7 @@
                     <MudCardActions Style="justify-content: center;">
                         <MudIconButton OnClick="@(() => DeleteProductAsync(product.Id))" Icon="@Icons.Material.Filled.Delete" Variant="Variant.Filled" Color="Color.Error" Class="mx-2" />
                         <MudIconButton OnClick="@(() => EditProduct(product.Id))" Icon="@Icons.Material.Filled.Edit" Variant="Variant.Filled" Color="Color.Primary" Class="mx-2" />
-                        <MudIconButton Disabled="@(product.UpdatedAt is not null)" OnClick="@(() => CheckProductAsync(product))" Icon="@Icons.Material.Filled.Check" Variant="Variant.Filled" Color="Color.Success" Class="mx-2" />
+                        <MudIconButton Disabled="@(product.IsChecked)" OnClick="@(() => CheckProductAsync(product))" Icon="@Icons.Material.Filled.Check" Variant="Variant.Filled" Color="Color.Success" Class="mx-2" />
                     </MudCardActions>
                 </MudCard>
             }
