@@ -3,15 +3,10 @@ using System.Text.Json;
 
 namespace Infrastructure;
 
-public class Notifications : IAsyncDisposable
+public class Notifications(IJSRuntime jsRuntime) : IAsyncDisposable
 {
-    private readonly IJSRuntime _jsRuntime;
+    private readonly IJSRuntime _jsRuntime = jsRuntime;
     private IJSObjectReference? _module;
-
-    public Notifications(IJSRuntime jsRuntime)
-    {
-        _jsRuntime = jsRuntime;
-    }
 
     private async Task EnsureModuleImportedAsync() => _module ??= await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/Notification.js");
 
@@ -23,7 +18,7 @@ public class Notifications : IAsyncDisposable
 
         try
         {
-            var result = await _jsRuntime.InvokeAsync<JsonElement>("notification.requestPermission");
+            var result = await _module!.InvokeAsync<JsonElement>("requestPermission");
 
             return result.ValueKind == JsonValueKind.True || (result.ValueKind == JsonValueKind.String && result.GetString() != NotificationPermissionDenied);
         }
@@ -37,7 +32,15 @@ public class Notifications : IAsyncDisposable
     public async Task ShowNotificationAsync(string title, NotificationOptions options)
     {
         await EnsureModuleImportedAsync();
-        await _jsRuntime.InvokeVoidAsync("notification.show", title, options);
+        try {
+            Console.WriteLine($"Showing notification: {title}");
+            await _module!.InvokeVoidAsync("show", title, options);
+            Console.WriteLine("Notification show method invoked");
+        }
+        catch (Exception ex) {
+            Console.WriteLine($"Error showing notification: {ex.Message}");
+            throw;
+        }
     }
 
     public async ValueTask DisposeAsync()
