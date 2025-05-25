@@ -90,4 +90,10 @@
   <data name="EnableNotifications" xml:space="preserve">
     <value>¿Te gustaría habilitar las notificaciones?</value>
   </data>
+  <data name="ProductExpirationWarning" xml:space="preserve">
+    <value>Advertencia de caducidad de producto</value>
+  </data>
+  <data name="TotalExpirationItens" xml:space="preserve">
+    <value>Tienes {0} productos que caducarán pronto</value>
+  </data>
 </root>
