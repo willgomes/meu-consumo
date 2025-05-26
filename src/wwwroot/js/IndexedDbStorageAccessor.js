@@ -7,11 +7,15 @@ export function initialize()
         let db = ticketSystemDb.result;
 
         const productsStore = db.createObjectStore("products", { keyPath: "id" });
+        const typeStore = db.createObjectStore("types", { keyPath: "id" });
 
         productsStore.createIndex("idxname", "name", { unique: false });
         productsStore.createIndex("idxcreatedAt", "createdAt", { unique: false });
         productsStore.createIndex("idxupdatedAt", "updatedAt", { unique: false });
-        
+        productsStore.createIndex("idxtype", "type", { unique: false });
+
+        typeStore.createIndex("idxname", "name", { unique: false });
+        typeStore.createIndex("idxcreatedAt", "createdAt", { unique: false });
     }
 }
 
