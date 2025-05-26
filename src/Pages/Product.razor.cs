@@ -51,7 +51,7 @@ namespace track_items.Pages
             {
                 int expired = _products
                     .AsParallel()
-                    .Count(p => p.ExpirationDate <= DateTime.UtcNow.AddDays(5) && p.ExpirationDate >= DateTime.UtcNow);
+                    .Count(p => p.ExpirationDate <= DateTime.UtcNow.AddDays(5) && (p.IsChecked == false || p.UpdatedAt == null) && p.ExpirationDate >= DateTime.UtcNow);
 
                 if (expired > 0)
                 {
