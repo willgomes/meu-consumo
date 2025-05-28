@@ -26,6 +26,20 @@ namespace track_items.Pages
 
         private IEnumerable<ProductModel> _products = [];
 
+        private List<ProductModel> _filteredProducts = [];
+
+        private bool _showCheckedProductsOnly = false;
+        public bool ShowCheckedProductsOnly
+        {
+            get => _showCheckedProductsOnly;
+            set
+            {
+                _showCheckedProductsOnly = value;
+                ApplyProductFilters();
+            }
+        }
+        private string _searchText = string.Empty;
+
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
@@ -46,8 +60,10 @@ namespace track_items.Pages
         private async Task LoadProductsAsync()
         {
             _products = await ProductService!.GetProductsAsync();
+            _products = _products.Where(p => p.IsChecked == _showCheckedProductsOnly);
+            _filteredProducts = [.. _products];
 
-            if (_products.Count() > 0)
+            if (_products.Any())
             {
                 int expired = _products
                     .AsParallel()
@@ -92,5 +108,36 @@ namespace track_items.Pages
             await ProductService!.AddProductAsync(product);
         }
 
+        private async Task<IEnumerable<ProductModel>> SearchProducts(string value, CancellationToken cancellationToken)
+        {
+            if (string.IsNullOrEmpty(value))
+                return _products ?? [];
+
+            IEnumerable<ProductModel> result = _products?.Where(p =>
+                   p.GetHumanizedName()!.Contains(value, StringComparison.OrdinalIgnoreCase))
+                   ?? [];
+
+            return await Task.FromResult(result);
+        }
+
+        private void HandleProductSelected(ProductModel? product) => _filteredProducts = product is null ? [.. _products] : [product];
+
+        private void OnSearchTextChanged(string searchText)
+        {
+            _searchText = searchText;
+            ApplyProductFilters();
+        }
+
+        private void ApplyProductFilters()
+        {
+            if (_products == null) return;
+
+            _filteredProducts = [.. _products
+                .Where(p => string.IsNullOrEmpty(_searchText) ||
+                    p.Name?.Contains(_searchText, StringComparison.OrdinalIgnoreCase) == true)
+                .Where(p => p.IsChecked == _showCheckedProductsOnly)];
+
+            StateHasChanged();
+        }
     }
 }

@@ -1,17 +1,65 @@
 @page "/product"
+@using Models
+
+<style>
+    .sticky-search-container {
+        position: sticky;
+        top: 64px;
+        z-index: 100;
+        background-color: var(--mud-palette-background);
+        margin-bottom: 1rem;
+        padding-top: 8px;
+    }
+    
+    .search-paper {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        width: 100%;
+    }
+
+    @@media (max-width: 600px) {
+        .sticky-search-container {
+            top: 56px;
+        }
+    }
+</style>
 
 <MudGrid Class="px-4 py-4">
     <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
         <MudText Typo="Typo.h6" Class="px-4">@Localizer!["Products"]</MudText>
     </MudItem>
+    
+    <MudItem xs="12" sm="12" md="12" lg="12" xl="12" Class="sticky-search-container">
+        <MudPaper Elevation="0" Class="d-flex align-center px-4 search-paper">
+            <MudAutocomplete T="ProductModel" 
+                           Label="@Localizer!["SearchProducts"]"
+                           SearchFunc="@SearchProducts"
+                           ResetValueOnEmptyText="true"
+                           CoerceText="true"
+                           AdornmentIcon="@Icons.Material.Filled.Search"
+                           AdornmentColor="@Color.Secondary"
+                           ToStringFunc="@(p => p?.GetHumanizedName() ?? string.Empty)"
+                           FullWidth="true"
+                           Immediate="true"
+                           Variant="Variant.Outlined"
+                           ValueChanged="HandleProductSelected"
+                           TextChanged="OnSearchTextChanged"/>
+            
+            <MudSwitch @bind-Value="ShowCheckedProductsOnly"
+                      Color="Color.Success"
+                      Label="@Localizer!["ShowActive"]"
+                      Class="ml-2"/>
+        </MudPaper>
+    </MudItem>
+    
     <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-        @if (_products?.Count() == 0 || _products is null)
+        @if (_filteredProducts?.Count() == 0)
         {
             <MudText Typo="Typo.body1" Class="px-4">@Localizer!["NoProductsFound"]</MudText>
         }
         else
         {
-            @foreach (var product in _products)
+            @foreach (ProductModel? product in _filteredProducts!)
             {
                 <MudCard Class="mb-4" Style="width: 100%;">
                     <MudCardHeader>

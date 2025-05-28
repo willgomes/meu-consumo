@@ -99,4 +99,10 @@
   <data name="ProductDeleted" xml:space="preserve">
     <value>Producto eliminado</value>
   </data>
+  <data name="SearchProducts" xml:space="preserve">
+    <value>Buscar productos</value>
+  </data>
+  <data name="ShowActive" xml:space="preserve">
+    <value>Mostrar inactivos</value>
+  </data>
 </root>
