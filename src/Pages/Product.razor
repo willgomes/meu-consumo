@@ -87,8 +87,12 @@
 
                         @if (product.ExpirationDate is not null)
                         {
-                            <MudText Typo="Typo.body2">@Localizer!["ExpiresIn"]: @product.ExpirationDate?.ToString("dd/MM/yyyy")</MudText>
-                            <MudText Typo="Typo.body2">@Localizer!["DaysLeft"]: @product.GetDaysLeft()</MudText>
+                            <MudText Typo="Typo.body2">@Localizer!["ExpiresIn"]: @product.ExpirationDate?.ToLocalTime().ToString("dd/MM/yyyy")</MudText>
+                            
+                            @if(!product.IsChecked)
+                            {
+                                <MudText Typo="Typo.body2">@Localizer!["DaysLeft"]: @product.GetDaysLeft()</MudText>
+                            }
                         }
                         
                         @if(product.UpdatedAt is not null)

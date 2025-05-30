@@ -17,16 +17,12 @@ public class ProductModel
 
     public decimal GetTotalPrice() => Price.HasValue ? Price.Value * Stock : 0m;
 
-    public string? GetHumanizedName() =>  Name?.Humanize();
+    public string? GetHumanizedName() => Name?.Humanize();
 
     public int GetTotalDiffTime()
     {
-        if (UpdatedAt.HasValue)
-        {
-            var diff = DateTime.UtcNow - UpdatedAt.Value;
-            return (int)diff.TotalDays;
-        }
-        return 0;
+        TimeSpan diff = DateTime.UtcNow - UpdatedAt!.Value;
+        return (int)diff.TotalDays;
     }
 
     public int GetDaysLeft()
