@@ -21,7 +21,7 @@ public class ProductModel
 
     public int GetTotalDiffTime()
     {
-        TimeSpan diff = DateTime.UtcNow - UpdatedAt!.Value;
+        TimeSpan diff = UpdatedAt!.Value - CreatedAt!.Value;
         return (int)diff.TotalDays;
     }
 
