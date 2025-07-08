@@ -105,4 +105,38 @@
   <data name="ShowActive" xml:space="preserve">
     <value>Show inactive</value>
   </data>
+  <data name="TypeAlreadyExists" xml:space="preserve">
+    <value>Type already exists</value>
+  </data>
+  <data name="TypeAddedSuccessfully" xml:space="preserve">
+    <value>Type added successfully</value>
+  </data>
+  <data name="EnterTypeName" xml:space="preserve">
+    <value>Enter type name</value>
+  </data>
+  <data name="EnterTypeNameRequired" xml:space="preserve">
+    <value>Type name is required</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="SelectType" xml:space="preserve">
+    <value>Select group</value>
+  </data>
+  <data name="AverageGroup" xml:space="preserve">
+    <value>Average per group</value>
+  </data>
+  <data name="Average" xml:space="preserve">
+    <value>Average time</value>
+  </data>
+  <data name="AveragePrice" xml:space="preserve">
+    <value>Average price</value>
+  </data>
+  <data name="PriceVariation" xml:space="preserve">
+    <value>Price variation</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>No data available</value>
+  </data>
+
 </root>

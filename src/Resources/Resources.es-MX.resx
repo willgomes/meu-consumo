@@ -105,4 +105,34 @@
   <data name="ShowActive" xml:space="preserve">
     <value>Mostrar inactivos</value>
   </data>
+  <data name="TypeAlreadyExists" xml:space="preserve">
+    <value>Grupo ya existe</value>
+  </data>
+  <data name="TypeAddedSuccessfully" xml:space="preserve">
+    <value>Grupo agregado con éxito</value>
+  </data>
+  <data name="EnterTypeName" xml:space="preserve">
+    <value>Ingrese el nombre del grupo</value>
+  </data>
+  <data name="EnterTypeNameRequired" xml:space="preserve">
+    <value>El nombre del grupo es obligatorio</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Grupo</value>
+  </data>
+  <data name="SelectType" xml:space="preserve">
+    <value>Seleccione el grupo</value>
+  </data>
+  <data name="AverageGroup" xml:space="preserve">
+    <value>Promedio por grupo</value>
+  </data>
+  <data name="Average" xml:space="preserve">
+      <value>Promedio de tiempo</value>
+  </data>
+  <data name="PriceVariation" xml:space="preserve">
+      <value>Variación de precio</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+      <value>No hay datos disponibles</value>
+  </data>
 </root>
