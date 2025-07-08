@@ -20,6 +20,8 @@ namespace track_items.Pages
 
         private MudForm? _form;
         private bool _isLoading = false;
+        private bool _autoCompleteHidden = false;
+        private string _typeName = string.Empty;
 
         [Inject]
         private ISnackbar? Snackbar { get; set; }
@@ -69,6 +71,41 @@ namespace track_items.Pages
                 NavigationManager!.NavigateTo("/product");
             else
                 _product = new ProductModel();
+        }
+
+        private async Task AddNewTypeAsync()
+        {
+            TypeModel type = new() { Name = _typeName };
+
+            IEnumerable<string> result = await SearchAsync(type.Name, CancellationToken.None);
+
+            if (result.Any())
+                Snackbar!.Add(Localizer!["TypeAlreadyExists"], Severity.Warning);
+            else
+            {
+                await ProductService!.AddTypeAsync(type);
+                Snackbar!.Add(Localizer!["TypeAddedSuccessfully"], Severity.Success);
+            }
+
+            AddTypeToggleButton(false);
+        }
+
+        private void AddTypeToggleButton(bool isHidden)
+        {
+            _autoCompleteHidden = isHidden;
+            StateHasChanged();
+        }
+
+        private async Task<IEnumerable<string>> SearchAsync(string value, CancellationToken cancellationToken)
+        {
+            IEnumerable<TypeModel> types = await ProductService!.GetTypesAsync();
+
+            if (string.IsNullOrEmpty(value))
+                return types.Select(_ => _.Name);
+
+            return types
+                .Where(_ => _.Name.Contains(value, StringComparison.InvariantCultureIgnoreCase))
+                .Select(_ => _.Name) ?? [];
         }
     }
 }

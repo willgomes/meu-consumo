@@ -16,6 +16,25 @@
                                 RequiredError="@Localizer!["NameRequired"]" />
                         </MudItem>
                         <MudItem xs="12" sm="12">
+                            <MudStack Row="true">
+                                @if (_autoCompleteHidden)
+                                {
+                                    <MudTextField T="string" @bind-Value="_typeName" Placeholder="@Localizer!["EnterTypeName"]" Required="true" RequiredError="@Localizer!["EnterTypeNameRequired"]" />
+                                    <MudIconButton Icon="@Icons.Material.Filled.Cancel" Variant="Variant.Filled" Color="Color.Error"
+                                        OnClick="() => AddTypeToggleButton(false)" />
+                                    <MudIconButton Icon="@Icons.Material.Filled.Check" Variant="Variant.Filled" Color="Color.Primary" OnClick="AddNewTypeAsync" />
+                                }
+                                else
+                                {
+                                    <MudAutocomplete @bind-Value="_product.Type" SearchFunc="SearchAsync!"
+                                        Label="@Localizer!["Type"]" Placeholder="@Localizer["SelectType"]" />
+                                    <MudIconButton Icon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Primary"
+                                        OnClick="() => AddTypeToggleButton(true)" />
+                                }
+
+                            </MudStack>
+                        </MudItem>
+                        <MudItem xs="12" sm="12">
                             <MudNumericField Adornment="Adornment.Start" AdornmentText="R$" @bind-Value="_product.Price"
                                 Label="@Localizer!["Price"]" Format="N2" />
                         </MudItem>
@@ -23,7 +42,8 @@
                             <MudNumericField @bind-Value="_product.Stock" Label="@Localizer!["Quantity"]" Min="0" />
                         </MudItem>
                         <MudItem xs="12" sm="12">
-                            <MudDatePicker TransformOrigin="Origin.TopRight" Label="@Localizer!["AddedAt"]" Editable="true" @bind-Date="_product.CreatedAt"
+                            <MudDatePicker TransformOrigin="Origin.TopRight" Label="@Localizer!["AddedAt"]"
+                                Editable="true" @bind-Date="_product.CreatedAt"
                                 Placeholder="@Localizer!["SelectDate"]" />
                         </MudItem>
                         <MudItem xs="12" sm="12">
