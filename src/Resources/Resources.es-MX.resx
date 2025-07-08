@@ -129,6 +129,9 @@
   <data name="Average" xml:space="preserve">
       <value>Promedio de tiempo</value>
   </data>
+  <data name="AveragePrice" xml:space="preserve">
+    <value>Precio promedio</value>
+  </data>
   <data name="PriceVariation" xml:space="preserve">
       <value>Variación de precio</value>
   </data>
