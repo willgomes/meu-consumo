@@ -1,8 +1,5 @@
 ﻿@page "/"
-@using Blazored.LocalStorage
-@using Infrastructure
-@using Microsoft.Extensions.Localization
-@using Resources
+@using Humanizer
 
 <MudGrid Class="px-4 py-4">
     <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
@@ -20,49 +17,39 @@
             </MudCardContent>
         </MudCard>
     </MudItem>
+    <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+        <MudStack>
+            <MudText Typo="Typo.h6">@Localizer!["AverageGroup"]</MudText>
+            <MudStack Row="true">
+                @if (_groupAverage.Any())
+                {
+                    @foreach (var group in _groupAverage)
+                    {
+                        <MudCard>
+                            <MudCardHeader>
+                                <CardHeaderAvatar>
+                                    <MudAvatar>
+                                        <MudIcon Icon="@Icons.Material.Filled.Inventory" />
+                                    </MudAvatar>
+                                </CardHeaderAvatar>
+                                <CardHeaderContent>
+                                    <MudText Typo="Typo.body1">@(string.IsNullOrEmpty(group.Name) ? Localizer!["Nogroup"] :
+                                                                        group.Name.Humanize())</MudText>
+                                </CardHeaderContent>
+                            </MudCardHeader>
+                            <MudCardContent>
+                                <MudText Typo="Typo.body1">@Localizer!["Average"]: @group.AverageTime dias <MudIcon Icon="@Icons.Material.Filled.AccessTimeFilled" /></MudText>
+                                <MudText Typo="Typo.body1">@Localizer!["AveragePrice"]: @group.AveragePrice.ToString("C") <MudIcon Icon="@Icons.Material.Filled.AttachMoney" /></MudText>
+                                <MudText Typo="Typo.body1">@Localizer!["PriceVariation"]: @group.PriceVariation.ToString("F2")%</MudText>
+                            </MudCardContent>
+                        </MudCard>
+                    }
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6" Class="px-4">@Localizer!["NoData"]</MudText>
+                }
+            </MudStack>
+        </MudStack>
+    </MudItem>
 </MudGrid>
-
-@code
-{
-    [Inject] ILocalStorageService? LocalStorage { get; set; }
-    [Inject] Notifications? Notifications { get; set; }
-    [Inject] IStringLocalizer<Resource>? Localizer { get; set; }
-
-    private string NotificationIcon => IsNotificationEnabled ? Icons.Material.Filled.NotificationsActive :
-    Icons.Material.Filled.NotificationsOff;
-
-    private bool _isNotificationEnabled;
-    public bool IsNotificationEnabled
-    {
-        get => _isNotificationEnabled;
-        set
-        {
-            if (_isNotificationEnabled != value)
-            {
-                _isNotificationEnabled = value;
-
-                _ = Task.Run(async () => await EnableNotificationsAsync());
-            }
-        }
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        string? notificationRequest = await LocalStorage!.GetItemAsStringAsync("notificationRequest");
-
-        bool.TryParse(notificationRequest, out bool hasAuthorizedNotification);
-
-        Console.WriteLine($"Notification Request: {hasAuthorizedNotification}");
-
-        _isNotificationEnabled = hasAuthorizedNotification;
-
-    }
-
-    private async Task EnableNotificationsAsync()
-    {
-        bool result = await Notifications!.RequestPermissionAsync();
-
-        await LocalStorage!.SetItemAsync("notificationRequest", result);
-    }
-
-}
