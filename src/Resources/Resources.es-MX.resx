@@ -82,7 +82,7 @@
     <value>Seleccionar Fecha</value>
   </data>
   <data name="ExpiresIn" xml:space="preserve">
-    <value>Expira en</value>
+    <value>Vencimiento en</value>
   </data>
   <data name="DaysLeft" xml:space="preserve">
     <value>Días Restantes</value>

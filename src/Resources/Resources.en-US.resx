@@ -79,7 +79,7 @@
     <value>Added at</value>
   </data>
   <data name="ExpiresIn" xml:space="preserve">
-    <value>Expires In</value>
+    <value>Expiration date</value>
   </data>
   <data name="DaysLeft" xml:space="preserve">
     <value>Days Left</value>
