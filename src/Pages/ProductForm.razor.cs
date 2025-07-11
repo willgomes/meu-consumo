@@ -47,16 +47,16 @@ namespace track_items.Pages
 
             if (_form.IsValid)
             {
+                await ProductService!.AddProductAsync(_product);
+
                 Snackbar!.Add(Localizer!["ProductAddedSuccessfully"], Severity.Success, config =>
                 {
                     config.ShowCloseIcon = true;
                     config.CloseAfterNavigation = true;
                 });
 
-                await ProductService!.AddProductAsync(_product);
-
                 if (!IsEditMode)
-                    Cancel();
+                    NavigationManager!.NavigateTo("/product");
             }
 
             _isLoading = false;
