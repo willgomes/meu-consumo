@@ -72,6 +72,9 @@
   <data name="ProductAddedSuccessfully" xml:space="preserve">
     <value>Product added successfully</value>
   </data>
+  <data name="ProductSuccessfullyEdited" xml:space="preserve">
+    <value>Product successfully edited</value>
+  </data>
   <data name="AppTitle" xml:space="preserve">
     <value>My Consumption</value>
   </data>

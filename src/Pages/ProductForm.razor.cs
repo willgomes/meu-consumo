@@ -49,7 +49,7 @@ namespace track_items.Pages
             {
                 await ProductService!.AddProductAsync(_product);
 
-                Snackbar!.Add(Localizer!["ProductAddedSuccessfully"], Severity.Success, config =>
+                Snackbar!.Add(IsEditMode ? Localizer!["ProductSuccessfullyEdited"] : Localizer!["ProductAddedSuccessfully"], Severity.Success, config =>
                 {
                     config.ShowCloseIcon = true;
                     config.CloseAfterNavigation = true;
